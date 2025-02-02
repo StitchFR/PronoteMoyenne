@@ -5,7 +5,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
-import csv
 
 
 option = webdriver.ChromeOptions()
@@ -15,8 +14,9 @@ driver = webdriver.Chrome(options=option)
 driver.get("https://monlycee.net/")
 WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH,"//*[@id= \"container\"]/app-header/header/p[3]/a"))).click()
 
-username = ""
+udername =""
 mdp = ""
+
 username_field = driver.find_element(By.ID, "username")
 password_field = driver.find_element(By.ID, "password")
 username_field.send_keys(username)
@@ -46,8 +46,10 @@ def fairemoyenne():
     if len(results) != 0: 
         total = 0
         for result in results : 
-            notes =float(result.get_text().replace(",","."))
-            total = total + notes
+            note_text = result.get_text().strip()
+            if note_text != "Abs":
+                notes =float(result.get_text().replace(",","."))
+                total = total + notes
         moyenne = total/(len(results))
         new_moy = round(moyenne,2)
         print("Votre moyenne est de",new_moy)
