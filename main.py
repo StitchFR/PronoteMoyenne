@@ -14,7 +14,7 @@ driver = webdriver.Chrome(options=option)
 driver.get("https://monlycee.net/")
 WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH,"//*[@id= \"container\"]/app-header/header/p[3]/a"))).click()
 
-udername =""
+username =""
 mdp = ""
 
 username_field = driver.find_element(By.ID, "username")
